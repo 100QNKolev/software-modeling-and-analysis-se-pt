@@ -1,0 +1,67 @@
+table DimArtist
+	lineageTag: 50bf6814-c4c7-549f-9c3e-87a9efb273ed
+
+	column ArtistKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4c31675d-3f27-5ecb-a2f0-4538cf6101cb
+		summarizeBy: none
+		sourceColumn: ArtistKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArtistID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1f583b9c-7af2-51ba-af10-52ae6633d611
+		summarizeBy: none
+		sourceColumn: ArtistID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArtistName
+		dataType: string
+		lineageTag: cdd7533a-7d2d-50d8-ba9e-d4611cc838d5
+		summarizeBy: none
+		sourceColumn: ArtistName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArtistCountry
+		dataType: string
+		lineageTag: a4fcef55-dcbd-5197-8eb7-07cda4784d7c
+		summarizeBy: none
+		sourceColumn: ArtistCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column DebutYear
+		dataType: int64
+		formatString: 0
+		lineageTag: e11ab9f9-93bf-59f9-b6d9-4d6e9b852491
+		summarizeBy: none
+		sourceColumn: DebutYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsVerified
+		dataType: boolean
+		lineageTag: b5c0bb19-a8a3-5936-8a0d-dfd513b52f6b
+		summarizeBy: none
+		sourceColumn: IsVerified
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimArtist = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(SqlServer, SqlDatabase),
+				    Data = Source{[Schema="dw",Item="DimArtist"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

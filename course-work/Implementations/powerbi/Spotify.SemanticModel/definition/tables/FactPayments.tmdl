@@ -1,0 +1,100 @@
+table FactPayments
+	lineageTag: a6b12cd6-4e32-50df-9498-d23ce9bf09b8
+
+	measure 'Total Revenue' = CALCULATE ( SUM ( FactPayments[Amount] ), FactPayments[IsSuccessful] = 1 )
+		formatString: #,0.00
+		lineageTag: 0de233f0-c550-51a8-be2f-387b64766ec6
+
+	measure 'Successful Payments' = CALCULATE ( COUNTROWS ( FactPayments ), FactPayments[IsSuccessful] = 1 )
+		formatString: #,0
+		lineageTag: 845b3406-5af2-5249-b54d-5c94b68506f3
+
+	column PaymentID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9feee0e9-5c71-51c7-9201-2f661082ac72
+		summarizeBy: none
+		sourceColumn: PaymentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 73a04836-79fb-5c98-b828-2616711f8cda
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 80dc26e9-8dc0-593e-af2e-d465f24a0d4f
+		summarizeBy: none
+		sourceColumn: UserKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 50013a90-bf98-56ab-a14e-23ac7dafdead
+		summarizeBy: none
+		sourceColumn: PlanKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 97dc2e5b-94fe-5dc6-9a5a-15b9bedcbba9
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentMethod
+		dataType: string
+		lineageTag: d465e374-3e45-57e8-9d40-339eade37805
+		summarizeBy: none
+		sourceColumn: PaymentMethod
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: b9764546-112b-52a5-b74c-ff20688bc6d3
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsSuccessful
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1ab65a38-6b17-52d1-8cca-a9b5190234bd
+		summarizeBy: none
+		sourceColumn: IsSuccessful
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactPayments = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(SqlServer, SqlDatabase),
+				    Data = Source{[Schema="dw",Item="FactPayments"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

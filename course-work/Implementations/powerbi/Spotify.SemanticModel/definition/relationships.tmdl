@@ -1,0 +1,60 @@
+relationship f4e2bc39-bf1b-5063-86b8-4647c97b6f7f
+	fromColumn: FactStreams.DateKey
+	toColumn: DimDate.DateKey
+
+relationship 4ef6fddb-cf69-569f-ba18-edd6420fce5d
+	fromColumn: FactStreams.UserKey
+	toColumn: DimUser.UserKey
+
+relationship dfc4591a-a6f9-522f-8def-553a8fa59f59
+	fromColumn: FactStreams.TrackKey
+	toColumn: DimTrack.TrackKey
+
+relationship 87e7a6d7-edf6-52c4-947f-e1ecc3a85b4c
+	fromColumn: FactStreams.ArtistKey
+	toColumn: DimArtist.ArtistKey
+
+relationship 4d20e597-70ca-5f0a-9bae-fe06fe0eac9d
+	fromColumn: FactStreams.DeviceKey
+	toColumn: DimDevice.DeviceKey
+
+relationship 05ab45a5-a3fe-5d01-91e4-8f26781b56d5
+	fromColumn: FactStreams.GeographyKey
+	toColumn: DimGeography.GeographyKey
+
+relationship 2668a644-bd85-52ab-afe6-7f6282f4278a
+	fromColumn: FactStreams.PlanKey
+	toColumn: DimPlan.PlanKey
+
+relationship 67896d3d-2279-5ace-8050-9008560e35fb
+	fromColumn: FactPayments.DateKey
+	toColumn: DimDate.DateKey
+
+relationship 4fd04cff-8570-5fe1-ae52-ec295559eb9d
+	fromColumn: FactPayments.UserKey
+	toColumn: DimUser.UserKey
+
+relationship 4152c33a-534e-544c-a8e8-a721598e210d
+	fromColumn: FactPayments.PlanKey
+	toColumn: DimPlan.PlanKey
+
+relationship e059c08b-3c5b-5523-ab76-1bbb6dd7b9c7
+	fromColumn: FactPayments.GeographyKey
+	toColumn: DimGeography.GeographyKey
+
+relationship 86580ff1-716d-59a0-813d-cae55be21346
+	fromColumn: FactSubscriptions.StartDateKey
+	toColumn: DimDate.DateKey
+
+relationship b6774663-01ce-565b-9436-a78041c5d59e
+	fromColumn: FactSubscriptions.UserKey
+	toColumn: DimUser.UserKey
+
+relationship 593ae621-8a3e-5510-90cc-381c8207c007
+	fromColumn: FactSubscriptions.PlanKey
+	toColumn: DimPlan.PlanKey
+
+relationship 26885aa4-44a1-5024-908a-60a78b4f3513
+	fromColumn: FactSubscriptions.GeographyKey
+	toColumn: DimGeography.GeographyKey
+

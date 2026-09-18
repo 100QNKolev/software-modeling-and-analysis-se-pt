@@ -1,0 +1,93 @@
+table DimDate
+	lineageTag: c149c7c6-c630-5cd5-9964-3086e69a8a2b
+	dataCategory: Time
+
+	column DateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 316efd0b-f6e1-560a-829b-73111667a0f4
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullDate
+		dataType: dateTime
+		isKey
+		formatString: yyyy-mm-dd
+		lineageTag: f1e9d147-0575-5a79-9257-e0c8015be664
+		summarizeBy: none
+		sourceColumn: FullDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MonthNumber
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8ee12aac-9dbd-593d-8039-78ed65892667
+		summarizeBy: none
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: b79dc035-e35d-5c2d-a180-153a214d275c
+		summarizeBy: none
+		sourceColumn: MonthName
+		sortByColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthYear
+		dataType: string
+		lineageTag: de8945fd-9b2e-5967-b9ad-825418734eeb
+		summarizeBy: none
+		sourceColumn: MonthYear
+		sortByColumn: YearMonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthNumber
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: da316a1e-ae21-5639-b420-60f569d42657
+		summarizeBy: none
+		sourceColumn: YearMonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 848c1c3e-394c-5c13-87a0-d18ff1ede0dc
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e387e23-ad46-53ac-8b0b-33f35a42e065
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(SqlServer, SqlDatabase),
+				    Data = Source{[Schema="dw",Item="DimDate"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

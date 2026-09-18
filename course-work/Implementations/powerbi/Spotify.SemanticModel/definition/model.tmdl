@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["SqlServer", "SqlDatabase", "DimDate", "DimUser", "DimGeography", "DimArtist", "DimTrack", "DimDevice", "DimPlan", "FactStreams", "FactPayments", "FactSubscriptions"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DimDate
+ref table DimUser
+ref table DimGeography
+ref table DimArtist
+ref table DimTrack
+ref table DimDevice
+ref table DimPlan
+ref table FactStreams
+ref table FactPayments
+ref table FactSubscriptions
+
+ref cultureInfo en-US
+

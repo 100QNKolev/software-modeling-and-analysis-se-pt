@@ -1,0 +1,77 @@
+table DimUser
+	lineageTag: e57d832c-85e9-569f-9f5c-7b259482102c
+
+	column UserKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7b2e16e7-f6d3-53a8-afdc-11af3a5b1d45
+		summarizeBy: none
+		sourceColumn: UserKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c2cb714f-716e-5cfd-99ef-fd9a3eb286b9
+		summarizeBy: none
+		sourceColumn: UserID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Username
+		dataType: string
+		lineageTag: a571acab-f417-5a43-99d3-b0ac31b15218
+		summarizeBy: none
+		sourceColumn: Username
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 02e33ae1-2224-57b1-838f-009fca565c3e
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column AgeGroup
+		dataType: string
+		lineageTag: 680e31d2-0e77-57cb-b759-d52b1bdfecf9
+		summarizeBy: none
+		sourceColumn: AgeGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column SignupDate
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 4ad3de33-ac2f-56c9-85e7-5b26f09878ae
+		summarizeBy: none
+		sourceColumn: SignupDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column IsActive
+		dataType: boolean
+		lineageTag: ae90cf79-16e9-522c-bfd3-32cf4ecbaf81
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimUser = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(SqlServer, SqlDatabase),
+				    Data = Source{[Schema="dw",Item="DimUser"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

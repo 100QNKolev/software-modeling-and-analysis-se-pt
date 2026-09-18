@@ -1,0 +1,22 @@
+{
+  "name": "Spotify",
+  "dataColors": [
+    "#1DB954",
+    "#1E3264",
+    "#E8115B",
+    "#509BF5",
+    "#F59B23",
+    "#AF2896",
+    "#27856A",
+    "#8D67AB",
+    "#FF6437",
+    "#148A08"
+  ],
+  "foreground": "#191414",
+  "foregroundNeutralSecondary": "#535353",
+  "background": "#FFFFFF",
+  "backgroundLight": "#F4F4F4",
+  "tableAccent": "#1DB954",
+  "good": "#1DB954",
+  "bad": "#E8115B"
+}

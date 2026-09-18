@@ -1,0 +1,58 @@
+table DimDevice
+	lineageTag: bb842b03-b9e6-5360-bf9b-306600c86359
+
+	column DeviceKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 786de273-38de-5eae-bbf5-47564124a012
+		summarizeBy: none
+		sourceColumn: DeviceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeviceTypeID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bd5a845f-373a-5a25-a322-06ade81bc459
+		summarizeBy: none
+		sourceColumn: DeviceTypeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeviceCategory
+		dataType: string
+		lineageTag: b3d0f8d1-916f-56d1-bf6e-12cccb6d83b7
+		summarizeBy: none
+		sourceColumn: DeviceCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column OperatingSystem
+		dataType: string
+		lineageTag: 43da12f4-8e79-5304-8125-59bcef322602
+		summarizeBy: none
+		sourceColumn: OperatingSystem
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsMobile
+		dataType: boolean
+		lineageTag: ee337dd9-e189-559f-b2c7-d505ccee238a
+		summarizeBy: none
+		sourceColumn: IsMobile
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDevice = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(SqlServer, SqlDatabase),
+				    Data = Source{[Schema="dw",Item="DimDevice"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

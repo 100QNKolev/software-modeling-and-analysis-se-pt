@@ -1,0 +1,152 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 482.48748893562083,
+            "y": 349.50820146646174
+          },
+          "nodeIndex": "FactStreams",
+          "nodeLineageTag": "b4ae4079-0989-53af-8dac-d7812e02aa2f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 192.53942043133748,
+            "y": 551.69589597583763
+          },
+          "nodeIndex": "DimArtist",
+          "nodeLineageTag": "50bf6814-c4c7-549f-9c3e-87a9efb273ed",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 785.32810476569762,
+            "y": 777.18798202236871
+          },
+          "nodeIndex": "DimDate",
+          "nodeLineageTag": "c149c7c6-c630-5cd5-9964-3086e69a8a2b",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 296.84531808693009
+          },
+          "nodeIndex": "DimDevice",
+          "nodeLineageTag": "bb842b03-b9e6-5360-bf9b-306600c86359",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 771.00683739376655,
+            "y": 222.00906224917003
+          },
+          "nodeIndex": "DimGeography",
+          "nodeLineageTag": "b1e0a84a-4e17-5b93-83e6-a35ef2e2a89b",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1060.796182183065,
+            "y": -50
+          },
+          "nodeIndex": "DimPlan",
+          "nodeLineageTag": "17d2fc13-f5e9-5836-969a-6098cf113627",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 339.88005956233229,
+            "y": -21.071276433894354
+          },
+          "nodeIndex": "DimTrack",
+          "nodeLineageTag": "3dae5dd0-3296-5018-a4f6-96a87299de26",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 827.35042862091541,
+            "y": 474.6079216243885
+          },
+          "nodeIndex": "DimUser",
+          "nodeLineageTag": "e57d832c-85e9-569f-9f5c-7b259482102c",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1113.5158322762954,
+            "y": 587.53857992988026
+          },
+          "nodeIndex": "FactPayments",
+          "nodeLineageTag": "a6b12cd6-4e32-50df-9498-d23ce9bf09b8",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1200.8718835671664,
+            "y": 230.4180533944326
+          },
+          "nodeIndex": "FactSubscriptions",
+          "nodeLineageTag": "0da97e5f-2450-59a6-bdf3-dca158096900",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

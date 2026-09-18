@@ -1,0 +1,10 @@
+expression SqlServer = "localhost" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 3fc6246a-dc5d-5bb4-ba04-e2c0ce43e5a9
+
+	annotation PBI_ResultType = Text
+
+expression SqlDatabase = "SpotifyDB" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: c7fbae13-1ead-5811-9637-34318a987e38
+
+	annotation PBI_ResultType = Text
+

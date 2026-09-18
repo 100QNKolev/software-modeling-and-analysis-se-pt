@@ -1,0 +1,58 @@
+table DimGeography
+	lineageTag: b1e0a84a-4e17-5b93-83e6-a35ef2e2a89b
+
+	column GeographyKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 449c5891-8eea-57fd-b015-8a6a2b759e4d
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3915f4d4-4c5c-5bcf-aff1-58d457365115
+		summarizeBy: none
+		sourceColumn: CountryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryCode
+		dataType: string
+		lineageTag: 78b484e6-a279-5835-a240-69ef94fa5901
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryName
+		dataType: string
+		lineageTag: f915b3c1-eed9-50bc-910f-2376b270d5c6
+		summarizeBy: none
+		sourceColumn: CountryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 85c73553-ab0b-5c1f-9696-b64cfed8afb0
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimGeography = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(SqlServer, SqlDatabase),
+				    Data = Source{[Schema="dw",Item="DimGeography"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

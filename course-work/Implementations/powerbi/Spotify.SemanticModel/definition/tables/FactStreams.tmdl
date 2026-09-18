@@ -1,0 +1,130 @@
+table FactStreams
+	lineageTag: b4ae4079-0989-53af-8dac-d7812e02aa2f
+
+	measure 'Total Streams' = COUNTROWS ( FactStreams )
+		formatString: #,0
+		lineageTag: 4885c3f5-ad38-5cbe-b53f-769aa1f87d76
+
+	measure 'Listening Hours' = DIVIDE ( SUM ( FactStreams[SecondsPlayed] ), 3600 )
+		formatString: #,0
+		lineageTag: e38c2d0a-1bcb-50fe-93e6-6e67c712f9ab
+
+	measure 'Active Listeners' = DISTINCTCOUNT ( FactStreams[UserKey] )
+		formatString: #,0
+		lineageTag: 4b7439e2-8561-529b-8297-c6f484b3b070
+
+	measure 'Skip Rate' = DIVIDE ( SUM ( FactStreams[IsSkipped] ), [Total Streams] )
+		formatString: 0.0%
+		lineageTag: 093cfe30-5a64-576c-bee4-2997768c25ff
+
+	column StreamID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: dccb9747-da07-5bb3-a71e-7812c1babbb8
+		summarizeBy: none
+		sourceColumn: StreamID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9e85dbc2-2c14-5c6f-8ade-2f09a042038c
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bc603661-2a84-555c-8192-37f661874dd1
+		summarizeBy: none
+		sourceColumn: UserKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a7613f4a-d257-50a1-bfd9-470a9f4e22a6
+		summarizeBy: none
+		sourceColumn: TrackKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArtistKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 634e00c8-b221-5c39-a053-485991677a46
+		summarizeBy: none
+		sourceColumn: ArtistKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeviceKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1fdd801b-4121-51d5-ab8c-87af5a6c87f0
+		summarizeBy: none
+		sourceColumn: DeviceKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7200a56d-02a7-5135-a9af-ad49cfadd81c
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e742f64e-8904-559b-a937-cecdfa8930d7
+		summarizeBy: none
+		sourceColumn: PlanKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SecondsPlayed
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9e001474-5872-54c7-bd8c-29ebf87d6318
+		summarizeBy: none
+		sourceColumn: SecondsPlayed
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsSkipped
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: acb260a0-c5ff-5689-b343-c186e8fd1486
+		summarizeBy: none
+		sourceColumn: IsSkipped
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactStreams = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(SqlServer, SqlDatabase),
+				    Data = Source{[Schema="dw",Item="FactStreams"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

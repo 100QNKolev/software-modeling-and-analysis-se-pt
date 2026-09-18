@@ -1,0 +1,83 @@
+table DimTrack
+	lineageTag: 3dae5dd0-3296-5018-a4f6-96a87299de26
+
+	column TrackKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d0f414d0-a2b5-5ee8-952e-1e0c76da151f
+		summarizeBy: none
+		sourceColumn: TrackKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 03752a50-fbe6-529e-b437-64a64ff8f0bb
+		summarizeBy: none
+		sourceColumn: TrackID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TrackTitle
+		dataType: string
+		lineageTag: cd7f2c20-5fa5-5d3e-9e43-0cc59cdb191a
+		summarizeBy: none
+		sourceColumn: TrackTitle
+
+		annotation SummarizationSetBy = Automatic
+
+	column ArtistName
+		dataType: string
+		lineageTag: 163f6826-d349-5cd5-9bf1-74a9987a1c0e
+		summarizeBy: none
+		sourceColumn: ArtistName
+
+		annotation SummarizationSetBy = Automatic
+
+	column AlbumTitle
+		dataType: string
+		lineageTag: 87458db5-1d8b-5974-b17b-7b8c1833ab8f
+		summarizeBy: none
+		sourceColumn: AlbumTitle
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrimaryGenre
+		dataType: string
+		lineageTag: 3afa1327-11a6-5088-82bd-b23fb7871343
+		summarizeBy: none
+		sourceColumn: PrimaryGenre
+
+		annotation SummarizationSetBy = Automatic
+
+	column DurationSec
+		dataType: int64
+		formatString: 0
+		lineageTag: e662464f-8972-5776-b571-aa6b6391b24a
+		summarizeBy: none
+		sourceColumn: DurationSec
+
+		annotation SummarizationSetBy = Automatic
+
+	column DurationBucket
+		dataType: string
+		lineageTag: 7056b8c4-1f05-517b-b339-a5019cb4b2da
+		summarizeBy: none
+		sourceColumn: DurationBucket
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimTrack = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(SqlServer, SqlDatabase),
+				    Data = Source{[Schema="dw",Item="DimTrack"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

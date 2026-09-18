@@ -1,0 +1,67 @@
+table DimPlan
+	lineageTag: 17d2fc13-f5e9-5836-969a-6098cf113627
+
+	column PlanKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 45804960-470e-51aa-bc23-1f5bd3123da2
+		summarizeBy: none
+		sourceColumn: PlanKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2d561a1f-d58d-5d1e-adca-c16bf9f878aa
+		summarizeBy: none
+		sourceColumn: PlanID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanName
+		dataType: string
+		lineageTag: 1372f69a-72a5-5e4a-9c2d-fe75fce4ebe1
+		summarizeBy: none
+		sourceColumn: PlanName
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanTier
+		dataType: string
+		lineageTag: 41a9f85f-ef4e-5f06-807b-423f21e218c0
+		summarizeBy: none
+		sourceColumn: PlanTier
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthlyPrice
+		dataType: double
+		formatString: #,0.00
+		lineageTag: f93460a0-089b-5f8d-96c9-198ee7bbc639
+		summarizeBy: sum
+		sourceColumn: MonthlyPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column HasAds
+		dataType: boolean
+		lineageTag: 8aa5bc23-f399-5134-8dfe-6b7addb7c0fb
+		summarizeBy: none
+		sourceColumn: HasAds
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPlan = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(SqlServer, SqlDatabase),
+				    Data = Source{[Schema="dw",Item="DimPlan"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,120 @@
+table FactSubscriptions
+	lineageTag: 0da97e5f-2450-59a6-bdf3-dca158096900
+
+	measure 'Active Subscriptions' = CALCULATE ( COUNTROWS ( FactSubscriptions ), FactSubscriptions[IsActive] = 1 )
+		formatString: #,0
+		lineageTag: 9922ece7-254f-5316-9183-8e984f304cc5
+
+	measure 'Churn Rate' = DIVIDE ( CALCULATE ( COUNTROWS ( FactSubscriptions ), FactSubscriptions[Status] = "Cancelled" ), COUNTROWS ( FactSubscriptions ) )
+		formatString: 0.0%
+		lineageTag: 1ae9ca0b-d852-5087-be2c-270a583de06a
+
+	column SubscriptionID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 685daa6b-7ce7-5cac-8488-0a01f8c1d900
+		summarizeBy: none
+		sourceColumn: SubscriptionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 98dcf163-3e7e-562a-b127-5722cbda3849
+		summarizeBy: none
+		sourceColumn: StartDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndDateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: afce7a60-b463-513b-a31b-3b791b876db3
+		summarizeBy: none
+		sourceColumn: EndDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f425cec2-b4d3-5f10-929a-46cb95d00d26
+		summarizeBy: none
+		sourceColumn: UserKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlanKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 66f5116e-f48a-501c-975d-d16f027979b3
+		summarizeBy: none
+		sourceColumn: PlanKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7581795e-3af1-500b-865e-4b0e32908d08
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 6be9ccfb-b47d-5551-b381-b5ca152121b7
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column DurationDays
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 01edc67a-9dd1-5731-988c-4225d61e7376
+		summarizeBy: none
+		sourceColumn: DurationDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsActive
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ab2255e5-32b9-5186-8f55-97db09f4ce39
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalPaid
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 66b3426f-91d5-5802-a588-fba7d520b874
+		summarizeBy: sum
+		sourceColumn: TotalPaid
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactSubscriptions = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(SqlServer, SqlDatabase),
+				    Data = Source{[Schema="dw",Item="FactSubscriptions"]}[Data]
+				in
+				    Data
+
+	annotation PBI_ResultType = Table
+

@@ -277,16 +277,23 @@ WITH Plays AS
     CROSS JOIN sys.all_objects AS b
 )
 INSERT INTO dbo.Streams (UserID, TrackID, DeviceTypeID, StartedAt, SecondsPlayed)
-SELECT 1 + (pl.PlayNo * 17) % 40,
+SELECT u.UserID,
        t.TrackID,
        1 + (pl.PlayNo * 11) % 6,
-       DATEADD(MINUTE, (pl.PlayNo * 97) % 1440, DATEADD(DAY, (pl.PlayNo * 13) % 608, '2025-01-01')),
+       DATEADD(MINUTE, (pl.PlayNo * 97) % 1440,
+               CAST(DATEADD(DAY, (pl.PlayNo * 13) % DATEDIFF(DAY, fd.FirstDay, '2026-08-31'), fd.FirstDay) AS DATETIME2(0))),
        CASE WHEN pl.PlayNo % 7 = 0 THEN 5 + pl.PlayNo % 20
             ELSE t.DurationSec - pl.PlayNo % 11 END
 FROM Plays AS pl
+INNER JOIN dbo.Users AS u
+        ON u.UserID = 1 + (pl.PlayNo * 17) % 40
 INNER JOIN dbo.Tracks AS t
         ON t.TrackID = CASE WHEN pl.PlayNo % 3 = 0 THEN 1 + (pl.PlayNo * 29) % 15
-                            ELSE 1 + (pl.PlayNo * 29) % 60 END;
+                            ELSE 1 + (pl.PlayNo * 29) % 60 END
+INNER JOIN dbo.Albums AS al ON al.AlbumID = t.AlbumID
+CROSS APPLY (SELECT CASE WHEN al.ReleaseDate > DATEADD(DAY, 1, CAST(u.CreatedAt AS DATE))
+                         THEN al.ReleaseDate
+                         ELSE DATEADD(DAY, 1, CAST(u.CreatedAt AS DATE)) END AS FirstDay) AS fd;
 
 COMMIT TRANSACTION;
 GO

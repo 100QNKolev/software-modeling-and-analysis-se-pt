@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "DimPlan.PlanName",
-              "nativeQueryRef": "PlanName",
-              "active": true
+              "nativeQueryRef": "PlanName"
             },
             {
               "field": {
@@ -42,8 +41,7 @@
                 }
               },
               "queryRef": "FactSubscriptions.Active Subscriptions",
-              "nativeQueryRef": "Active Subscriptions",
-              "active": false
+              "nativeQueryRef": "Active Subscriptions"
             },
             {
               "field": {
@@ -57,8 +55,7 @@
                 }
               },
               "queryRef": "FactSubscriptions.Churn Rate",
-              "nativeQueryRef": "Churn Rate",
-              "active": false
+              "nativeQueryRef": "Churn Rate"
             },
             {
               "field": {
@@ -72,8 +69,7 @@
                 }
               },
               "queryRef": "FactPayments.Total Revenue",
-              "nativeQueryRef": "Total Revenue",
-              "active": false
+              "nativeQueryRef": "Total Revenue"
             }
           ]
         }
